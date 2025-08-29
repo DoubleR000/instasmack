@@ -1,2 +1,11 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
+
+.logo {
+  font-family: 'Atma', cursive;
+}
+
+body {
+  font-family: "Instrument Sans", sans-serif;
+  color: white;
+}
