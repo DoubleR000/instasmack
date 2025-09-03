@@ -33,19 +33,20 @@ defineProps({
         required: true,
     },
     modelValue: [String, Number],
+    defaultValue: String,
 });
 
 const isOpen = ref(false);
 const optionList = ref(null);
 const selected = ref('');
 
-const emit = defineEmits(['selectedOption']);
+const emit = defineEmits(['option-change']);
 
 onClickOutside(optionList, () => (isOpen.value = false));
 
 function selectOption(option: string) {
     selected.value = option;
     isOpen.value = false;
-    emit('selectedOption', option);
+    emit('option-change', option);
 }
 </script>
