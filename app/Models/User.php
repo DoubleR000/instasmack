@@ -21,6 +21,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'birthday',
+        'username',
+        'name'
     ];
 
     /**
@@ -29,6 +32,7 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $hidden = [
+        'birthday',
         'password',
         'remember_token',
     ];
@@ -44,5 +48,10 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
     }
 }
