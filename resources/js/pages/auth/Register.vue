@@ -14,7 +14,7 @@
                     >
                         Email
                     </TextInputField>
-                    <FormErrorMessage :field-error="registerForm.errors.email" />
+                    <FormErrorMessage :field-error="[registerForm.errors.email]" />
 
                     <label class="font-bold" for="password">Password</label>
                     <TextInputField
@@ -25,11 +25,11 @@
                         @input="registerForm.clearErrors('password')"
                         >Password</TextInputField
                     >
-                    <FormErrorMessage :field-error="registerForm.errors.password" />
+                    <FormErrorMessage :field-error="[registerForm.errors.password]" />
 
                     <label class="font-bold" for="password">Confirm Password</label>
                     <TextInputField class="mt-2" :type="'password'" v-model="registerForm.password_confirmation"> Password </TextInputField>
-                    <FormErrorMessage :field-error="registerForm.errors.password_confirmation" />
+                    <FormErrorMessage :field-error="[registerForm.errors.password_confirmation]" />
 
                     <label class="font-bold">Birthday</label>
                     <div class="mb-4 flex flex-row items-start gap-5">
@@ -37,15 +37,15 @@
                         <Dropdown class="flex-1" :options="daysInMonth" @option-change="(day) => (birthDay = day)">Day</Dropdown>
                         <Dropdown class="flex-1" :options="years" @option-change="(year) => (birthYear = year)">Years</Dropdown>
                     </div>
-                    <FormErrorMessage :field-error="registerForm.errors.birthdate" />
+                    <FormErrorMessage :field-error="[registerForm.errors.birthday]" />
 
                     <label class="font-bold">Name</label>
                     <TextInputField class="mt-2" v-model="registerForm.name">Name</TextInputField>
-                    <FormErrorMessage :field-error="registerForm.errors.name" />
+                    <FormErrorMessage :field-error="[registerForm.errors.name]" />
 
                     <label class="font-bold">Username</label>
                     <TextInputField class="mt-2" v-model="registerForm.username">Username</TextInputField>
-                    <FormErrorMessage :field-error="registerForm.errors.username" />
+                    <FormErrorMessage :field-error="[registerForm.errors.username]" />
 
                     <button class="mt-5 h-12 w-full cursor-pointer rounded-4xl bg-blue-500 font-semibold hover:bg-blue-700" type="submit">
                         Submit
@@ -99,7 +99,7 @@ const registerForm = useForm({
     email: '',
     password: '',
     password_confirmation: '',
-    birthdate: '',
+    birthday: '',
     name: '',
     username: '',
 });
@@ -110,7 +110,7 @@ watch([birthDay, birthMonth, birthYear], () => {
 });
 
 function submitForm() {
-    registerForm.birthdate = birthDate.value;
+    registerForm.birthday = birthDate.value;
 
     if (!registerForm.email) {
         registerForm.setError('email', 'Please enter a valid email address.');
@@ -120,12 +120,12 @@ function submitForm() {
         registerForm.setError('password', 'Enter a combination of at least six numbers, letters and punctuation marks (like ! and &).');
     }
 
-    if (!registerForm.birthdate) {
-        registerForm.setError('birthdate', 'Select your birthday. You can change who can see this later.');
+    if (!registerForm.birthday) {
+        registerForm.setError('birthday', 'Select your birthday. You can change who can see this later.');
     }
 
     if (!registerForm.username) {
-        registerForm.setError('birthdate', 'Select your birthday. You can change who can see this later.');
+        registerForm.setError('username', 'Please enter a username for your account');
     }
 
     if (registerForm.hasErrors) {
