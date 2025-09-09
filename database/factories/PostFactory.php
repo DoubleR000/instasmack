@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Media;
+use App\Models\Post;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -21,5 +23,20 @@ class PostFactory extends Factory
             'content' => $this->faker->paragraphs(3, true),
             'user_id' => \App\Models\User::factory(),
         ];
+    }
+
+    public function withMedia()
+    {
+        return $this->afterCreating(function (Post $post) {
+            $numberOfMedia = $this->faker->numberBetween(1, 3);
+
+            for ($i = 0; $i < $numberOfMedia; $i++) {
+                $media = Media::factory()->for($post)->make();
+
+                $media->position = $i;
+
+                $media->save();
+            }
+        });
     }
 }

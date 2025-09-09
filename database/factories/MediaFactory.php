@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Storage;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Media>
@@ -17,7 +18,11 @@ class MediaFactory extends Factory
     public function definition(): array
     {
         return [
-            'file_path' => $this->faker->image(storage_path('app/public/posts')),
+            'path' => $this->faker->randomElement([
+                'test-images\600x600.png',
+                'test-images\600x800.png',
+                'test-images\800x600.png'
+            ]),
             'type' => 'image'
         ];
     }
