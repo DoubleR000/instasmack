@@ -1,6 +1,6 @@
 <template>
     <div class="pr-10">
-        <Link class="w-full cursor-pointer rounded-md text-left text-lg hover:bg-gray-600" :href="href" :method="method" as="button">
+        <Link class="h-12 w-full cursor-pointer rounded-md pb-1 text-left text-xl hover:bg-gray-600" :href="href" :method="method" as="button">
             <slot />
         </Link>
     </div>
